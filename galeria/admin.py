@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Categoria, Imagem
+from .models import Categoria, DonoGaleria, Imagem
 
 
 @admin.register(Categoria)
@@ -15,3 +15,9 @@ class ImagemAdmin(admin.ModelAdmin):
     list_display = ("titulo", "categoria", "publicada", "criada_em")
     list_filter = ("publicada", "categoria")
     search_fields = ("titulo", "descricao")
+
+
+@admin.register(DonoGaleria)
+class DonoGaleriaAdmin(admin.ModelAdmin):
+    list_display = ("nome", "email", "telefone")
+    search_fields = ("nome", "email", "instagram")
