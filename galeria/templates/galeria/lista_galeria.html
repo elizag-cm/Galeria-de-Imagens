@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria de Imagens</title>
+</head>
+<body>
+    <h1>Galeria de Imagens</h1>
+
+    {% if dono %}
+        <section>
+            <h2>Dono da galeria</h2>
+            <p><strong>Nome:</strong> {{ dono.nome }}</p>
+            <p><strong>Email:</strong> {{ dono.email }}</p>
+            {% if dono.telefone %}<p><strong>Telefone:</strong> {{ dono.telefone }}</p>{% endif %}
+            {% if dono.instagram %}<p><strong>Instagram:</strong> {{ dono.instagram }}</p>{% endif %}
+            {% if dono.bio %}<p><strong>Bio:</strong> {{ dono.bio }}</p>{% endif %}
+        </section>
+    {% endif %}
+
+    <section>
+        <h2>Filtrar por categoria</h2>
+        <a href="{% url 'lista_galeria' %}">Todas</a>
+        {% for categoria in categorias %}
+            <a href="{% url 'lista_galeria' %}?categoria={{ categoria.slug }}">{{ categoria.nome }}</a>
+        {% endfor %}
+    </section>
+
+    <p>
+        <a href="{% url 'adicionar_imagem' %}">Adicionar nova imagem</a> |
+        <a href="{% url 'editar_dono' %}">Editar dados do dono da galeria</a>
+    </p>
+
+    <section>
+        <h2>Imagens</h2>
+        {% if imagens %}
+            {% for imagem in imagens %}
+                <article>
+                    <h3>{{ imagem.titulo }}</h3>
+                    <p><strong>Categoria:</strong> {{ imagem.categoria.nome }}</p>
+                    {% if imagem.descricao %}<p>{{ imagem.descricao }}</p>{% endif %}
+                    {% if imagem.arquivo %}
+                        <img src="{{ imagem.arquivo.url }}" alt="{{ imagem.titulo }}" width="320">
+                    {% endif %}
+                </article>
+                <hr>
+            {% endfor %}
+        {% else %}
+            <p>Nenhuma imagem cadastrada para este filtro.</p>
+        {% endif %}
+    </section>
+</body>
+</html>

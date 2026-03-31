@@ -36,3 +36,19 @@ class Imagem(models.Model):
 
     def __str__(self):
         return self.titulo
+
+
+class DonoGaleria(models.Model):
+    nome = models.CharField(max_length=120)
+    email = models.EmailField()
+    telefone = models.CharField(max_length=20, blank=True)
+    bio = models.TextField(blank=True)
+    instagram = models.CharField(max_length=120, blank=True)
+    foto = models.ImageField(upload_to="dono/", blank=True, null=True)
+
+    class Meta:
+        verbose_name = "Dono da galeria"
+        verbose_name_plural = "Dono da galeria"
+
+    def __str__(self):
+        return self.nome
