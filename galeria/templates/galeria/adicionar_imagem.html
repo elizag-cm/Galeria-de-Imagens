@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adicionar imagem</title>
+    <link rel="stylesheet" href="{% static 'adiciona.css' %}">   
+
 </head>
-<body>
-    <h1>Adicionar imagem</h1>
+<body class="pagina-adicionar">
 
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Salvar imagem</button>
-    </form>
+    <main class="card-adicionar">
+        <h1>Adicionar imagem</h1>
 
-    <p><a href="{% url 'lista_galeria' %}">Voltar para galeria</a></p>
+        <form method="post" enctype="multipart/form-data" class="form-adicionar">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn-salvar">Salvar imagem</button>
+        </form>
+
+        <a href="{% url 'lista_galeria' %}" class="btn-voltar">Voltar para galeria</a>
+    </main>
+
 </body>
 </html>
