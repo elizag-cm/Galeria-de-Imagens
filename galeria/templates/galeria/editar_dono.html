@@ -1,19 +1,30 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dono da galeria</title>
+
+    <link rel="stylesheet" href="{% static 'dono.css' %}">
 </head>
 <body>
-    <h1>{% if dono %}Editar{% else %}Cadastrar{% endif %} dono da galeria</h1>
 
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Salvar</button>
-    </form>
+    <div class="caixa">
+        <h1>
+            {% if dono %}Editar{% else %}Cadastrar{% endif %} dono da galeria
+        </h1>
 
-    <p><a href="{% url 'lista_galeria' %}">Voltar para galeria</a></p>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Salvar</button>
+        </form>
+
+        <a href="{% url 'lista_galeria' %}" class="voltar">
+            Voltar para galeria
+        </a>
+    </div>
+
 </body>
 </html>
